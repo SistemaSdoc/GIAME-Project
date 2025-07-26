@@ -54,13 +54,13 @@ new Chart(ctxPrazo, {
 
 
 // Gráfico de Pizza (Distribuição de Contas)
-/* const ctxContas = document.getElementById('graficoContas');
+const ctxContas = document.getElementById('graficoContas');
 new Chart(ctxContas, {
   type: 'doughnut',
   data: {
-    labels: ['Contas Principais', 'Subcontas', 'Contas Associadas'],
+    labels: ['Mínimo', 'Médio', 'Profissional'],
     datasets: [{
-      data: [21, 11, 4],
+      data: [3, 3, 2],
       backgroundColor: ['#154A99', '#031D42', '#FFBF12'],
       borderWidth: 1
     }]
@@ -80,7 +80,7 @@ new Chart(ctxContas, {
   }
 });
 
-// Gráfico de Linhas (Lançamentos por Mês)
+/* // Gráfico de Linhas (Lançamentos por Mês)
 const ctxLanc = document.getElementById('graficoLancamentos');
 new Chart(ctxLanc, {
   type: 'line',
@@ -126,4 +126,4 @@ new Chart(ctxLanc, {
     }
   }
 });
- */
+  */

@@ -14,11 +14,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <!-- PRELOAD: conexão antecipada com o servidor das fontes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <!-- SWAP: estratégia de renderização da fonte -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
@@ -46,49 +43,6 @@
             <i data-lucide="layout-dashboard" class="w-5 h-5 collapsibble-menu-icons"></i>
             Dashboard
           </a>
-
-          <!-- Seção: Solicitações -->
-          <div class="collapsible-section">
-            <button
-              class="collapsible-trigger sidebar-link w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 group">
-              <div class="flex items-center gap-2">
-                <i data-lucide="mail-plus" class="w-4 h-4 collapsibble-menu-icons"></i>
-                <span class="truncate">Solicitações</span>
-              </div>
-              <i data-lucide="chevron-down" class="w-4 h-4 collapsibble-menu-icons dropdown-transition"></i>
-            </button>
-
-            <div class="mt-1 collapsible-content">
-              <div class="pl-4 space-y-1 border-l-2">
-                <a href="../solicitacoes/solicitacoes-pendentes.html" class="sidebar-subitem">
-                  <i data-lucide="clock-alert" class="w-4 h-4"></i> Solicitações pendentes
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Seção: Usuários -->
-          <div class="collapsible-section">
-            <button
-              class="collapsible-trigger sidebar-link w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 group">
-              <div class="flex items-center gap-2">
-                <i data-lucide="user-cog" class="w-4 h-4 collapsibble-menu-icons"></i>
-                <span class="truncate">Gerir Usuários</span>
-              </div>
-              <i data-lucide="chevron-down" class="w-4 h-4 collapsibble-menu-icons dropdown-transition"></i>
-            </button>
-
-            <div class="mt-1 collapsible-content">
-              <div class="pl-4 space-y-1 border-l-2">
-                <a href="../usuarios/ver-usuarios.html" class="sidebar-subitem">
-                  <i data-lucide="users" class="w-4 h-4"></i> Ver Usuários
-                </a>
-                <a href="../usuarios/ver-usuarios.html" class="sidebar-subitem">
-                  <i data-lucide="plus" class="w-4 h-4"></i> Criar Usuário
-                </a>
-              </div>
-            </div>
-          </div>
 
           <!-- Seção: Clientes -->
           <div class="collapsible-section">
@@ -136,31 +90,9 @@
             </div>
           </div>
 
-          <!-- Seção: Lançamentos -->
-          <div class="collapsible-section">
-            <button
-              class="collapsible-trigger sidebar-link w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 group">
-              <div class="flex items-center gap-2">
-                <i data-lucide="calendar" class="w-4 h-4 collapsibble-menu-icons"></i>
-                <span class="truncate">Diário Lançamentos</span>
-              </div>
-              <i data-lucide="chevron-down" class="w-4 h-4 collapsibble-menu-icons dropdown-transition"></i>
-            </button>
-
-            <div class="mt-1 collapsible-content">
-              <div class="pl-4 space-y-1 border-l-2">
-                <a href="../lancamentos/ver-lancamentos.html" class="sidebar-subitem">
-                  <i data-lucide="list" class="w-4 h-4"></i> Ver Lançamentos
-                </a>
-                <a href="../lancamentos/criar-lancamentos.html" class="sidebar-subitem">
-                  <i data-lucide="plus" class="w-4 h-4"></i> Adicionar Lançamentos
-                </a>
-                <a href="../lancamentos/diario-consulta.html" class="sidebar-subitem">
-                  <i data-lucide="calendar-search" class="w-4 h-4"></i> Diário de consulta
-                </a>
-              </div>
-            </div>
-          </div>
+          <a href="../lancamentos/diario-consulta.html" class="sidebar-subitem">
+            <i data-lucide="calendar-search" class="w-4 h-4"></i> Diário de consulta
+          </a>
         </nav>
       </div>
     </aside>
@@ -189,10 +121,12 @@
                 class="px-4 py-2 text-sm font-medium text-white transition-all duration-200 border border-gray-200 rounded-lg tab-button bg-primary">
                 Todos
               </button>
+
               <button onclick="showTab('tab2')" id="tab-tab2"
                 class="px-4 py-2 text-sm font-medium text-gray-700 transition-all duration-200 border border-gray-200 rounded-lg tab-button hover:bg-gray-100">
                 Singulares
               </button>
+
               <button onclick="showTab('tab3')" id="tab-tab3"
                 class="px-4 py-2 text-sm font-medium text-gray-700 transition-all duration-200 border border-gray-200 rounded-lg tab-button hover:bg-gray-100">
                 Empresas
@@ -232,8 +166,8 @@
                       <th>Contacto</th>
                       <th>E-mail</th>
                       <th>Tipo</th>
-                      <th>Estado</th>
-                      <th>Pacote</th>
+                      <th>Tamanho</th>
+                      <th>Sector</th>
                       <th class="text-right ">Ações</th>
                     </tr>
                   </thead>
@@ -246,8 +180,8 @@
                       <td>+244 999 999 999</td>
                       <td>joao@email.com</td>
                       <td class="px-3 text-sm text-gray-500">Singular</td>
-                      <td>Activo</td>
-                      <td>Profissional</td>
+                      <td>-</td>
+                      <td>-</td>
                       <td class="pr-4 text-right">
                         <div class="relative">
                           <button
@@ -287,8 +221,8 @@
                       <td>+244 998 888 777</td>
                       <td>maria@email.com</td>
                       <td class="px-3 text-sm text-gray-500">Empresa</td>
-                      <td>Inactivo</td>
-                      <td>Mínimo</td>
+                      <td>Média</td>
+                      <td>Agricultura</td>
                       <td class="pr-4 text-right">
                         <div class="relative">
                           <button
@@ -328,8 +262,8 @@
                       <td>+244 922 111 222</td>
                       <td>carlos@empresa.com</td>
                       <td class="px-3 text-sm text-gray-500">Singular</td>
-                      <td>Activo</td>
-                      <td>Mínimo</td>
+                      <td>-</td>
+                      <td>-</td>
                       <td class="pr-4 text-right">
                         <div class="relative">
                           <button
@@ -379,8 +313,6 @@
                       <th>Contacto</th>
                       <th>E-mail</th>
                       <th>Tipo</th>
-                      <th>Estado</th>
-                      <th>Pacote</th>
                       <th class="text-right ">Ações</th>
                     </tr>
                   </thead>
@@ -393,8 +325,6 @@
                       <td>+244 999 999 999</td>
                       <td>joao@email.com</td>
                       <td class="px-3 text-gray-500">Singular</td>
-                      <td>Activo</td>
-                      <td>Profissional</td>
                       <td class="pr-4 text-right">
                         <div class="relative">
                           <button
@@ -434,8 +364,6 @@
                       <td>+244 998 888 777</td>
                       <td>maria@email.com</td>
                       <td class="px-3 text-gray-500">Singular</td>
-                      <td>Activo</td>
-                      <td>Mínimo</td>
                       <td class="pr-4 text-right">
                         <div class="relative">
                           <button
@@ -475,8 +403,6 @@
                       <td>+244 922 111 222</td>
                       <td>carlos@empresa.com</td>
                       <td class="px-3 text-gray-500">Singular</td>
-                      <td>Inactivo</td>
-                      <td>Mínimo</td>
                       <td class="pr-4 text-right">
                         <div class="relative">
                           <button
@@ -526,8 +452,8 @@
                       <th>Contacto</th>
                       <th>E-mail</th>
                       <th>Tipo</th>
-                      <th>Estado</th>
-                      <th>Pacote</th>
+                      <th>Tamanho</th>
+                      <th>Sector</th>
                       <th class="text-right ">Ações</th>
                     </tr>
                   </thead>
@@ -540,8 +466,8 @@
                       <td>+244 999 999 999</td>
                       <td>joao@email.com</td>
                       <td class="px-3 text-gray-500">Empresa</td>
-                      <td>Activo</td>
-                      <td>Mínimo</td>
+                      <td>Média</td>
+                      <td>Agricultura</td>
                       <td class="pr-4 text-right">
                         <div class="relative">
                           <button
@@ -581,8 +507,8 @@
                       <td>+244 998 888 777</td>
                       <td>maria@email.com</td>
                       <td class="px-3 text-gray-500">Empresa</td>
-                      <td>Activo</td>
-                      <td>Mínimo</td>
+                      <td>Pequena</td>
+                      <td>Industrial</td>
                       <td class="pr-4 text-right">
                         <div class="relative">
                           <button
@@ -623,8 +549,8 @@
                       <td>+244 922 111 222</td>
                       <td>carlos@empresa.com</td>
                       <td class="px-3 text-gray-500">Empresa</td>
-                      <td>Activo</td>
-                      <td>Profissional</td>
+                      <td>Grande</td>
+                      <td>TI</td>
                       <td class="pr-4 text-right">
                         <div class="relative">
                           <button

@@ -5,19 +5,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="light dark" />
-  <title>Solicitações pendentes</title>
+  <title>Dashboard</title>
 
   <link rel="stylesheet" href="../../../css/tailwind/output.css">
   <link rel="stylesheet" href="../../../css/index.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body class="">
@@ -38,54 +39,62 @@
       <!-- Conteúdo da sidebar -->
       <div class="flex-1 overflow-y-auto">
         <nav class="p-4">
+
           <!-- Item direto: Dashboard -->
           <a href="index.html" class="sidebar-link">
             <i data-lucide="layout-dashboard" class="w-5 h-5 collapsibble-menu-icons"></i>
             Dashboard
           </a>
 
-          <!-- Seção: Solicitações -->
-          <div class="collapsible-section">
-            <button
-              class="collapsible-trigger sidebar-link w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 group">
-              <div class="flex items-center gap-2">
-                <i data-lucide="mail-plus" class="w-4 h-4 collapsibble-menu-icons"></i>
-                <span class="truncate">Solicitações</span>
-              </div>
-              <i data-lucide="chevron-down" class="w-4 h-4 collapsibble-menu-icons dropdown-transition"></i>
-            </button>
-
-            <div class="mt-1 collapsible-content">
-              <div class="pl-4 space-y-1 border-l-2">
-                <a href="solicitacoes/solicitacoes-pendentes.html" class="sidebar-subitem">
-                  <i data-lucide="clock-alert" class="w-4 h-4"></i> Solicitações pendentes
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Seção: Usuários -->
+          <!-- Seção: Clientes -->
           <div class="collapsible-section">
             <button
               class="collapsible-trigger sidebar-link w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 group">
               <div class="flex items-center gap-2">
                 <i data-lucide="user-cog" class="w-4 h-4 collapsibble-menu-icons"></i>
-                <span class="truncate">Gerir Usuário</span>
+                <span class="truncate">Gerir Clientes</span>
               </div>
               <i data-lucide="chevron-down" class="w-4 h-4 collapsibble-menu-icons dropdown-transition"></i>
             </button>
 
             <div class="mt-1 collapsible-content">
               <div class="pl-4 space-y-1 border-l-2">
-                <a href="usuarios/ver-usuarios.html" class="sidebar-subitem">
-                  <i data-lucide="users" class="w-4 h-4"></i> Ver Usuários
+                <a href="clientes/ver-clientes.html" class="sidebar-subitem">
+                  <i data-lucide="users" class="w-4 h-4"></i> Ver clientes
                 </a>
-                <a href="usuarios/ver-usuarios.html" class="sidebar-subitem">
-                  <i data-lucide="plus" class="w-4 h-4"></i> Criar Usuário
+                <a href="clientes/adicionar-cliente.html" class="sidebar-subitem">
+                  <i data-lucide="plus" class="w-4 h-4"></i> Adicionar Cliente
                 </a>
               </div>
             </div>
           </div>
+
+          <!-- Seção: Plano Geral Contas -->
+          <div class="collapsible-section">
+            <button
+              class="collapsible-trigger sidebar-link w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 group">
+              <div class="flex items-center gap-2">
+                <i data-lucide="list" class="w-4 h-4 collapsibble-menu-icons"></i>
+                <span class="truncate">Plano Geral Contas</span>
+              </div>
+              <i data-lucide="chevron-down" class="w-4 h-4 collapsibble-menu-icons dropdown-transition"></i>
+            </button>
+
+            <div class="mt-1 collapsible-content">
+              <div class="pl-4 space-y-1 border-l-2">
+                <a href="PGC/ver-contas.html" class="sidebar-subitem">
+                  <i data-lucide="list" class="w-4 h-4"></i> Ver Contas
+                </a>
+                <a href="PGC/criar-conta.html" class="sidebar-subitem">
+                  <i data-lucide="plus" class="w-4 h-4"></i> Criar Conta
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <a href="lancamentos/diario-consulta.html" class="sidebar-subitem">
+            <i data-lucide="calendar-search" class="w-4 h-4"></i> Diário de consulta
+          </a>
         </nav>
       </div>
     </aside>
@@ -111,106 +120,80 @@
 
           <!-- Cards -->
           <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-            <!-- Usuários Cadastrados -->
+            <!-- Clientes Cadastrados-->
             <div class="p-6 transition-all bg-white border border-gray-200 shadow-sm rounded-2xl hover:shadow-md group">
               <div class="flex items-center justify-between mb-4">
                 <div class="bg-primary/10 text-primary p-2.5 rounded-xl group-hover:scale-105 transition">
                   <i data-lucide="users" class="w-5 h-5"></i>
                 </div>
-                <a href="usuarios/ver-usuarios.html"
+                <a href="clientes/ver-clientes.html"
                   class="flex items-center gap-1 text-sm text-gray-400 transition hover:text-secondary">
                   Ver <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 </a>
               </div>
-              <p class="text-gray-500">Usuários Cadastrados</p>
-              <h2 class="mt-1 text-xl font-semibold text-secondary">8</h2>
+              <p class="text-gray-500">Clientes Cadastrados</p>
+              <div class="grid grid-cols-2 mt-2 text-sm text-gray-700 gap-y-1">
+                <p>Singulares: <strong>2</strong></p>
+                <p>Empresas: <strong>3</strong></p>
+              </div>
+              <p class="mt-2 text-xs text-gray-400">Última atualização: há 2h</p>
+            </div>
+
+            <!-- Sector de Empresas  -->
+            <div class="p-6 transition-all bg-white border border-gray-200 shadow-sm rounded-2xl hover:shadow-md group">
+              <div class="flex items-center justify-between mb-4">
+                <div class="bg-primary/10 text-primary p-2.5 rounded-xl group-hover:scale-105 transition">
+                  <i data-lucide="building2" class="w-5 h-5"></i>
+                </div>
+                <a href="clientes/sector-empresas.html"
+                  class="flex items-center gap-1 text-sm text-gray-400 transition hover:text-secondary">
+                  Ver <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+              <p class="text-gray-500">Sector de Empresas</p>
+              <h2 class="mt-1 text-xl font-semibold text-secondary">3</h2>
               <p class="mt-2 text-xs text-gray-400">Última atualização: hoje</p>
             </div>
 
-            <!-- Usuários por Estado -->
+            <!-- Tipos de Empresa -->
             <div class="p-6 transition-all bg-white border border-gray-200 shadow-sm rounded-2xl hover:shadow-md group">
               <div class="flex items-center justify-between mb-4">
                 <div class="bg-primary/10 text-primary p-2.5 rounded-xl group-hover:scale-105 transition">
-                  <i data-lucide="activity" class="w-5 h-5"></i>
+                  <i data-lucide="type" class="w-5 h-5"></i>
                 </div>
-
               </div>
-              <p class="text-gray-500">Usuários por Estado</p>
-              <div class="grid grid-cols-2 mt-2 text-sm text-gray-700 gap-y-1">
-                <p>Ativos: <strong>5</strong></p>
-                <p>Inativos: <strong>3</strong></p>
+              <p class="text-gray-500">Tipos de Empresas</p>
+              <div class="grid grid-cols-3 mt-2 text-sm text-gray-700 gap-y-1">
+                <p>Pequenas: <strong>1</strong></p>
+                <p>Médias: <strong>2</strong></p>
+                <p>Grandes: <strong>0</strong></p>
               </div>
               <p class="mt-2 text-xs text-gray-400">Última atualização: ontem</p>
-            </div>
-
-            <!-- Usuários por Pacote -->
-            <div class="p-6 transition-all bg-white border border-gray-200 shadow-sm rounded-2xl hover:shadow-md group">
-              <div class="flex items-center justify-between mb-4">
-                <div class="bg-primary/10 text-primary p-2.5 rounded-xl group-hover:scale-105 transition">
-                  <i data-lucide="box" class="w-5 h-5"></i>
-                </div>
-
-              </div>
-              <p class="text-gray-500">Usuários por Pacote</p>
-              <div class="grid grid-cols-3 mt-2 text-sm text-gray-700 gap-y-1">
-                <p>Mínimo: <strong>3</strong></p>
-                <p>Médio: <strong>3</strong></p>
-                <p class="">Profissional: <strong>2</strong></p>
-              </div>
-              <p class="mt-2 text-xs text-gray-400">Última atualização: hoje às 09h</p>
             </div>
           </section>
 
           <!-- Ações Rápidas -->
           <section class="mt-8">
             <h3 class="mb-4 text-lg font-semibold text-gray-700">Ações Rápidas</h3>
-            <div class="grid grid-cols-2 gap-4 sm:grid-cols-2">
-              <!-- Novo Usuário -->
-              <a href="usuarios/ver-usuarios.html"
+            <div class="grid grid-cols-2 gap-4 md:grid-cols-2">
+              <!-- Novo cliente -->
+              <a href="clientes/adicionar-cliente.html"
                 class="flex flex-col items-center justify-center gap-2 p-4 transition bg-white border border-gray-200 shadow-sm rounded-xl hover:bg-gray-50 group">
                 <div class="p-2 transition-all rounded-lg bg-primary/10 text-primary group-hover:text-highlight">
                   <i data-lucide="user" class="w-5 h-5"></i>
                 </div>
-                <p class="text-sm text-gray-700">Adicionar Usuário</p>
+                <p class="text-sm text-gray-700">Adicionar Cliente</p>
               </a>
 
-              <!-- Gerir Solicitações -->
-              <a href="solicitacoes/solicitacoes-pendentes.html"
+              <!-- Nova Conta -->
+              <a href="PGC/criar-conta.html"
                 class="flex flex-col items-center justify-center gap-2 p-4 transition bg-white border border-gray-200 shadow-sm rounded-xl hover:bg-gray-50 group">
                 <div class="p-2 transition-all rounded-lg bg-primary/10 text-primary group-hover:text-highlight">
-                  <i data-lucide="users" class="w-5 h-5"></i>
+                  <i data-lucide="book" class="w-5 h-5"></i>
                 </div>
-                <p class="text-sm text-gray-700">Gerir Solicitações</p>
+                <p class="text-sm text-gray-700">Adicionar Conta (PGC)</p>
               </a>
             </div>
-          </section>
-
-          <!-- Gráficos -->
-          <section class="mt-8">
-            <h3 class="mb-4 text-lg font-semibold text-gray-700">Visão Geral</h3>
-
-            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-              <div class="p-4 bg-white border border-gray-200 shadow-sm rounded-xl">
-                <p class="mb-2 text-sm text-gray-600">Usuários por pacote</p>
-                <div class="relative h-[300px]">
-                  <canvas id="graficoContas" class="!h-full !w-full"></canvas>
-                </div>
-              </div>
-
-              <div class="p-4 bg-white border border-gray-200 shadow-sm rounded-xl">
-                <p class="mb-2 text-sm text-gray-600">Grupo de Clientes por Prazo Residual de Subscrição</p>
-                <div class="relative h-[300px]">
-                  <canvas id="graficoPrazo" class="!h-full !w-full"></canvas>
-                </div>
-              </div>
-            </div>
-
-            <!-- <div class="p-4 bg-white border border-gray-200 shadow-sm rounded-xl">
-              <p class="mb-2 text-sm text-gray-600">Lançamentos por Mês</p>
-              <div class="relative h-[300px]">
-                <canvas id="graficoLancamentos" class="!h-full !w-full"></canvas>
-              </div>
-            </div> -->
           </section>
         </div>
       </main>
@@ -221,7 +204,6 @@
   <div id="mobile-overlay" class="fixed inset-0 z-40 hidden transition-opacity duration-300 bg-black/50 md:hidden">
   </div>
 
-  <script src="../../../js/graphics.js"></script>
   <script src="../../../js/scripts.js"></script>
 </body>
 
