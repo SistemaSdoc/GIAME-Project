@@ -94,6 +94,11 @@
           <a href="../lancamentos/diario-consulta.html" class="sidebar-subitem">
             <i data-lucide="calendar-search" class="w-4 h-4"></i> Diário de consulta
           </a>
+
+          <a href="../../admin/index.html" class="sidebar-link">
+            <i data-lucide="layout-dashboard" class="w-5 h-5 collapsibble-menu-icons"></i>
+            Dashboard Admin
+          </a>
         </nav>
       </div>
     </aside>
@@ -133,18 +138,14 @@
 
               <div>
                 <label for="ano_analise" class="label">Ano de Análise</label>
-                <input type="text" name="ano_analise" id="ano_analise" class="input" placeholder="2025" required />
+                <input type="text" name="ano_analise" id="ano_analise" class="input" placeholder="2025" required
+                  value="2025" />
               </div>
 
               <div>
                 <label for="nif_empresa" class="label">NIF da Empresa</label>
                 <input type="text" name="nif_empresa" id="nif_empresa" class="input" placeholder="Ex: 500123456"
-                  required />
-              </div>
-
-              <div>
-                <label for="data_lancamento" class="label">Data do Lançamento</label>
-                <input type="date" name="data_lancamento" id="data_lancamento" class="input" required />
+                  value="500123LA456" required />
               </div>
 
               <div>
@@ -188,9 +189,10 @@
                   <tr>
                     <th>Nº do Movimento</th>
                     <th>Data do Movimento</th>
-                    <th>Descrição</th>
                     <th>Conta Debito</th>
+                    <th>Subconta</th>
                     <th>Conta Crédito</th>
+                    <th>Subconta</th>
                     <th>Valor Débito</th>
                     <th>Valor Crédito</th>
                     <th class="text-right ">Ações</th>
@@ -209,29 +211,48 @@
                     </td>
 
                     <td>
-                      <input type="text" name="descricao_movimento" id="descricao_movimento" class="font-normal input"
-                        placeholder="Descrição" required>
+                      <select name="conta_debito" id="conta_debito" class="font-normal input" required>
+                        <option disabled selected>Selcione a conta</option>
+                        <option value="11">11 - Imobilizações Corpóreas</option>
+                        <option value="32">12 - Imobilizações Incorpóreas</option>
+                        <option value="301">21 - Compras</option>
+                        <option value="201">26 - Mercadorias</option>
+                        <option value="401">31 - Clientes</option>
+                      </select>
                     </td>
 
                     <td>
-                      <select name="conta_debito" id="conta_debito" class="font-normal input" required>
-                        <option disabled selected>Selcione a conta</option>
-                        <option value="101">101 - Caixa</option>
-                        <option value="102">102 - Bancos</option>
-                        <option value="201">201 - Fornecedores</option>
-                        <option value="301">301 - Receitas</option>
-                        <option value="401">401 - Despesas</option>
+                      <select name="subconta_lancamento_deb" id="subconta_lancamento" class="font-normal input"
+                        required>
+                        <option disabled selected>Selcione a subconta</option>
+                        <option value="11">11.1 - Subconta A</option>
+                        <option value="32">11.2 - Subconta B</option>
+                        <option value="201">11.3 - Subconta C</option>
+                        <option value="301">11.4 - Subconta D</option>
+                        <option value="401">11.5 - Subconta E</option>
                       </select>
                     </td>
 
                     <td>
                       <select name="conta_credito" id="conta_credito" class="font-normal input" required>
                         <option disabled selected>Selcione a conta</option>
-                        <option value="101">101 - Caixa</option>
-                        <option value="102">102 - Bancos</option>
-                        <option value="201">201 - Fornecedores</option>
-                        <option value="301">301 - Receitas</option>
-                        <option value="401">401 - Despesas</option>
+                        <option value="11">32 - Fornecedores</option>
+                        <option value="32">33 - Empréstimos</option>
+                        <option value="201">34 - Conta Exemplo</option>
+                        <option value="301">35 - Conta Exemplo</option>
+                        <option value="401">36 - Conta Exemplo</option>
+                      </select>
+                    </td>
+
+                    <td>
+                      <select name="subconta_lancamento_cred" id="subconta_lancamento_cred" class="font-normal input"
+                        required>
+                        <option disabled selected>Selcione a subconta</option>
+                        <option value="11">32.1 - Subconta A</option>
+                        <option value="32">32.2 - Subconta B</option>
+                        <option value="201">32.3 - Subconta C</option>
+                        <option value="301">32.4 - Subconta D</option>
+                        <option value="401">32.5 - Subconta E</option>
                       </select>
                     </td>
 
