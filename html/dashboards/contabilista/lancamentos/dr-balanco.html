@@ -12,20 +12,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="light dark" />
-  <title>Diário de consulta</title>
+  <title>Clientes</title>
 
   <link rel="stylesheet" href="../../../../css/tailwind/output.css">
   <link rel="stylesheet" href="../../../../css/index.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <!-- PRELOAD: conexão antecipada com o servidor das fontes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <!-- SWAP: estratégia de renderização da fonte -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
@@ -125,77 +122,601 @@
       <!-- Conteúdo -->
       <main class="flex-1 overflow-auto">
         <div class=" page-content">
-          <h1
-            class="text-3xl font-semibold text-center text-transparent bg-gradient-to-r from-primary to-secondary bg-clip-text">
-            Balanço
+          <h1 class="text-3xl font-semibold text-transparent bg-gradient-to-r from-primary to-secondary bg-clip-text">
+          Balanços & DR
           </h1>
 
-          <div class="overflow-hidden bg-white border rounded-lg shadow-sm">
-            <div class="overflow-x-auto">
-              <table class="w-full text-sm text-left text-gray-700 ">
-                <thead class="">
-                  <tr>
-                    <th colspan="4" class="positionr">Moeda: AKZ</th>
-                  </tr>
-                  <tr>
+          <div class="flex flex-col gap-2">
+            <!-- Tabs -->
+            <div class="flex gap-2 mt-2">
+              <button onclick="showTab('tab1')" id="tab-tab1"
+                class="px-4 py-2 text-sm font-medium text-white transition-all duration-200 border border-gray-200 rounded-lg tab-button bg-primary">
+                BALANÇOS
+              </button>
 
-                    <th>Activos</th>
-                    <th>Notas</th>
-                    <th>2025</th>
-                    <th>2025</th>
-                  </tr>
-                </thead>
+              <button onclick="showTab('tab2')" id="tab-tab2"
+                class="px-4 py-2 text-sm font-medium text-gray-700 transition-all duration-200 border border-gray-200 rounded-lg tab-button hover:bg-gray-100">
+                BALANÇOSDEMONSTRAÇÃO DE RESULTADOS
+              </button>
 
-                <tbody class="divide-y divide-gray-200">
-                  <tr>
-                    <th colspan="4" class="positionl">Activos não correntes</th>
-                  </tr>
+            </div>
 
-                  <tr>
-                    <td>Imobilizações corpóreas</td>
-                    <td>4</td>
-                    <td>00,00</td>
-                    <td>89789.000</td>                    
-                  </tr>
+          </div>
 
-                  <tr>
-                    <td>Imobilizações incorpóreas</td>
-                    <td>7</td>
-                    <td>361,813,203.33</td>
-                    <td>D</td>
-                  </tr>
+          <div id="content-tab1" class="tab-content">
+            <div class="overflow-hidden bg-white border rounded-lg shadow-sm">
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-700 ">
+                  <thead class="">
+                    <tr>
+                      <th colspan="4" class="positionr">Moeda: AKZ</th>
+                    </tr>
+                    <tr>
+                      <th>Activos</th>
+                      <th>Notas</th>
+                      <th>2025</th>
+                      <th>2025</th>
+                      <th class="text-right ">Ações</th>
+                    </tr>
+                  </thead>
 
-                  <tr>
-                    <td>Investimento em subsidiárias e associadas</td>
-                    <td>9</td>
-                    <td>361,813,203.33</td>
-                    <td>D</td>
+                  <tbody class="divide-y divide-gray-200">
+                    <tr>
+                      <th colspan="5" class="positionl">ACTIVOS NÃO CORRENTES</th>
                     </tr>
 
-                  <tr>
-                    <td>Outros activos financeiros</td>
-                    <td>00,00</td>
-                    <td>361,813,203.33</td>
-                    <td>D</td>
-                  </tr>
+                    <tr>
+                      <td>Imobilizações corpóreas</td>
+                      <td>00,00</td>
+                      <td>361,813,203.33</td>
+                      <td>234.45</td>
+                      <td class="pr-4 text-right">
+                        <div class="relative">
+                          <button
+                            class="p-1 text-gray-500 transition-colors duration-200 rounded-full hover:text-gray-700 hover:bg-gray-100"
+                            onclick="toggleDropdown(this)">
+                            <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                          </button>
 
-                  <tr>
-                    <td>Outros activos não correntes</td>
-                    <td>00,00</td>
-                    <td>361,813,203.33</td>
-                    <td>D</td>
-                  </tr>
+                          <div class="hidden bg-white border border-gray-200 rounded-lg shadow-lg w-36 dropdown-menu">
+                            <div class="py-1">
+                              <button onclick="window.location.href = 'editar-cliente.html'"
+                                class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">
+                                <i data-lucide="edit" class="w-4 h-4"></i>
+                                Editar
+                              </button>
+                              <button class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left btn-acao"
+                                data-tipo="apagar" data-msg="Tem certeza que quer remover este cliente?"
+                                data-title="Remover cliente">
+                                <i data-lucide="trash2" class="w-4 h-4"></i>
+                                Remover
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <th class="positionl">TOTAL DO ACTIVO NÃO CORRENTE</th>
-                    <td>00,00</td>
-                    <td>361,813,203.33</td>
-                    <th>nnn</th>
-                  </tr>
-                </tbody>
-              </table>
+                    <tr>
+                      <td>Imobilizações incorpóreas</td>
+                      <td>00,00</td>
+                      <td>361,813,203.33</td>
+                      <td>234.45</td>
+                      <td class="pr-4 text-right">
+                        <div class="relative">
+                          <button
+                            class="p-1 text-gray-500 transition-colors duration-200 rounded-full hover:text-gray-700 hover:bg-gray-100"
+                            onclick="toggleDropdown(this)">
+                            <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                          </button>
+
+                          <div class="hidden bg-white border border-gray-200 rounded-lg shadow-lg w-36 dropdown-menu">
+                            <div class="py-1">
+                              <button onclick="window.location.href = 'editar-cliente.html'"
+                                class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">
+                                <i data-lucide="edit" class="w-4 h-4"></i>
+                                Editar
+                              </button>
+                              <button class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left btn-acao"
+                                data-tipo="apagar" data-msg="Tem certeza que quer remover este cliente?"
+                                data-title="Remover cliente">
+                                <i data-lucide="trash2" class="w-4 h-4"></i>
+                                Remover
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Investimento em subsidiárias e associadas</td>
+                      <td>00,00</td>
+                      <td>361,813,203.33</td>
+                      <td>234.45</td>
+                      <td class="pr-4 text-right">
+                        <div class="relative">
+                          <button
+                            class="p-1 text-gray-500 transition-colors duration-200 rounded-full hover:text-gray-700 hover:bg-gray-100"
+                            onclick="toggleDropdown(this)">
+                            <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                          </button>
+
+                          <div class="hidden bg-white border border-gray-200 rounded-lg shadow-lg w-36 dropdown-menu">
+                            <div class="py-1">
+                              <button onclick="window.location.href = 'editar-cliente.html'"
+                                class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">
+                                <i data-lucide="edit" class="w-4 h-4"></i>
+                                Editar
+                              </button>
+                              <button class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left btn-acao"
+                                data-tipo="apagar" data-msg="Tem certeza que quer remover este cliente?"
+                                data-title="Remover cliente">
+                                <i data-lucide="trash2" class="w-4 h-4"></i>
+                                Remover
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Outros activos financeiros</td>
+                      <td>00,00</td>
+                      <td>361,813,203.33</td>
+                      <td>234.45</td>
+                      <td class="pr-4 text-right">
+                        <div class="relative">
+                          <button
+                            class="p-1 text-gray-500 transition-colors duration-200 rounded-full hover:text-gray-700 hover:bg-gray-100"
+                            onclick="toggleDropdown(this)">
+                            <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                          </button>
+
+                          <div class="hidden bg-white border border-gray-200 rounded-lg shadow-lg w-36 dropdown-menu">
+                            <div class="py-1">
+                              <button onclick="window.location.href = 'editar-cliente.html'"
+                                class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">
+                                <i data-lucide="edit" class="w-4 h-4"></i>
+                                Editar
+                              </button>
+                              <button class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left btn-acao"
+                                data-tipo="apagar" data-msg="Tem certeza que quer remover este cliente?"
+                                data-title="Remover cliente">
+                                <i data-lucide="trash2" class="w-4 h-4"></i>
+                                Remover
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Outros activos não correntes</td>
+                      <td>00,00</td>
+                      <td>361,813,203.33</td>
+                      <td>234.45</td>
+                      <td class="pr-4 text-right">
+                        <div class="relative">
+                          <button
+                            class="p-1 text-gray-500 transition-colors duration-200 rounded-full hover:text-gray-700 hover:bg-gray-100"
+                            onclick="toggleDropdown(this)">
+                            <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                          </button>
+
+                          <div class="hidden bg-white border border-gray-200 rounded-lg shadow-lg w-36 dropdown-menu">
+                            <div class="py-1">
+                              <button onclick="window.location.href = 'editar-cliente.html'"
+                                class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">
+                                <i data-lucide="edit" class="w-4 h-4"></i>
+                                Editar
+                              </button>
+                              <button class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left btn-acao"
+                                data-tipo="apagar" data-msg="Tem certeza que quer remover este cliente?"
+                                data-title="Remover cliente">
+                                <i data-lucide="trash2" class="w-4 h-4"></i>
+                                Remover
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th class="positionl">Total do activo não corrente</th>
+                      <th>00,00</th>
+                      <th>361,813,203.33</th>
+                      <th>234.45</th>
+                      <td class="pr-4 text-right">
+                        <div class="relative">
+                          <button
+                            class="p-1 text-gray-500 transition-colors duration-200 rounded-full hover:text-gray-700 hover:bg-gray-100"
+                            onclick="toggleDropdown(this)">
+                            <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                          </button>
+
+                          <div class="hidden bg-white border border-gray-200 rounded-lg shadow-lg w-36 dropdown-menu">
+                            <div class="py-1">
+                              <button onclick="window.location.href = 'editar-cliente.html'"
+                                class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">
+                                <i data-lucide="edit" class="w-4 h-4"></i>
+                                Editar
+                              </button>
+                              <button class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left btn-acao"
+                                data-tipo="apagar" data-msg="Tem certeza que quer remover este cliente?"
+                                data-title="Remover cliente">
+                                <i data-lucide="trash2" class="w-4 h-4"></i>
+                                Remover
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <hr>
+                  <tbody class="divide-y divide-gray-200">
+                    <tr>
+                      <th colspan="5" class="positionl">ACTIVOS CORRENTES</th>
+                    </tr>
+
+                    <tr>
+                      <td>Vendas</td>
+                      <td>00,00</td>
+                      <td>361,813,203.33</td>
+                      <td>234.45</td>
+                      <td class="pr-4 text-right">
+                        <div class="relative">
+                          <button
+                            class="p-1 text-gray-500 transition-colors duration-200 rounded-full hover:text-gray-700 hover:bg-gray-100"
+                            onclick="toggleDropdown(this)">
+                            <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                          </button>
+
+                          <div class="hidden bg-white border border-gray-200 rounded-lg shadow-lg w-36 dropdown-menu">
+                            <div class="py-1">
+                              <button onclick="window.location.href = 'editar-cliente.html'"
+                                class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">
+                                <i data-lucide="edit" class="w-4 h-4"></i>
+                                Editar
+                              </button>
+                              <button class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left btn-acao"
+                                data-tipo="apagar" data-msg="Tem certeza que quer remover este cliente?"
+                                data-title="Remover cliente">
+                                <i data-lucide="trash2" class="w-4 h-4"></i>
+                                Remover
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Prestação de serviço</td>
+                      <td>00,00</td>
+                      <td>361,813,203.33</td>
+                      <td>234.45</td>
+                      <td class="pr-4 text-right">
+                        <div class="relative">
+                          <button
+                            class="p-1 text-gray-500 transition-colors duration-200 rounded-full hover:text-gray-700 hover:bg-gray-100"
+                            onclick="toggleDropdown(this)">
+                            <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                          </button>
+
+                          <div class="hidden bg-white border border-gray-200 rounded-lg shadow-lg w-36 dropdown-menu">
+                            <div class="py-1">
+                              <button onclick="window.location.href = 'editar-cliente.html'"
+                                class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">
+                                <i data-lucide="edit" class="w-4 h-4"></i>
+                                Editar
+                              </button>
+                              <button class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left btn-acao"
+                                data-tipo="apagar" data-msg="Tem certeza que quer remover este cliente?"
+                                data-title="Remover cliente">
+                                <i data-lucide="trash2" class="w-4 h-4"></i>
+                                Remover
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Outros proveitos operacionais</td>
+                      <td>00,00</td>
+                      <td>361,813,203.33</td>
+                      <td>234.45</td>
+                      <td class="pr-4 text-right">
+                        <div class="relative">
+                          <button
+                            class="p-1 text-gray-500 transition-colors duration-200 rounded-full hover:text-gray-700 hover:bg-gray-100"
+                            onclick="toggleDropdown(this)">
+                            <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                          </button>
+
+                          <div class="hidden bg-white border border-gray-200 rounded-lg shadow-lg w-36 dropdown-menu">
+                            <div class="py-1">
+                              <button onclick="window.location.href = 'editar-cliente.html'"
+                                class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">
+                                <i data-lucide="edit" class="w-4 h-4"></i>
+                                Editar
+                              </button>
+                              <button class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left btn-acao"
+                                data-tipo="apagar" data-msg="Tem certeza que quer remover este cliente?"
+                                data-title="Remover cliente">
+                                <i data-lucide="trash2" class="w-4 h-4"></i>
+                                Remover
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th class="positionl">Proveitos e Ganhos Operacionais</th>
+                      <th>00,00</th>
+                      <th>361,813,203.33</th>
+                      <th>234.45</th>
+                      <td class="pr-4 text-right">
+                        <div class="relative">
+                          <button
+                            class="p-1 text-gray-500 transition-colors duration-200 rounded-full hover:text-gray-700 hover:bg-gray-100"
+                            onclick="toggleDropdown(this)">
+                            <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                          </button>
+
+                          <div class="hidden bg-white border border-gray-200 rounded-lg shadow-lg w-36 dropdown-menu">
+                            <div class="py-1">
+                              <button onclick="window.location.href = 'editar-cliente.html'"
+                                class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">
+                                <i data-lucide="edit" class="w-4 h-4"></i>
+                                Editar
+                              </button>
+                              <button class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left btn-acao"
+                                data-tipo="apagar" data-msg="Tem certeza que quer remover este cliente?"
+                                data-title="Remover cliente">
+                                <i data-lucide="trash2" class="w-4 h-4"></i>
+                                Remover
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
+
+          <div id="content-tab2" class="hidden tab-content">
+            <div class="overflow-hidden bg-white border rounded-lg shadow-sm">
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-700 ">
+                  <thead class="">
+                    <tr>
+                      <th colspan="4" class="positionr">Moeda: AKZ</th>
+                    </tr>
+                    <tr>
+
+                      <th>Activos</th>
+                      <th>Notas</th>
+                      <th>2025</th>
+                      <th>2025</th>
+                      <th class="text-right ">Ações</th>
+                    </tr>
+                  </thead>
+
+                  <tbody class="divide-y divide-gray-200">
+                    <tr>
+                      <th colspan="5" class="positionl">Activos não correntes</th>
+                    </tr>
+
+                    <tr>
+                      <td>Imobilizações corpóreas</td>
+                      <td>00,00</td>
+                      <td>361,813,203.33</td>
+                      <td>234.45</td>
+                      <td class="pr-4 text-right">
+                        <div class="relative">
+                          <button
+                            class="p-1 text-gray-500 transition-colors duration-200 rounded-full hover:text-gray-700 hover:bg-gray-100"
+                            onclick="toggleDropdown(this)">
+                            <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                          </button>
+
+                          <div class="hidden bg-white border border-gray-200 rounded-lg shadow-lg w-36 dropdown-menu">
+                            <div class="py-1">
+                              <button onclick="window.location.href = 'editar-cliente.html'"
+                                class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">
+                                <i data-lucide="edit" class="w-4 h-4"></i>
+                                Editar
+                              </button>
+                              <button class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left btn-acao"
+                                data-tipo="apagar" data-msg="Tem certeza que quer remover este cliente?"
+                                data-title="Remover cliente">
+                                <i data-lucide="trash2" class="w-4 h-4"></i>
+                                Remover
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Imobilizações incorpóreas</td>
+                      <td>00,00</td>
+                      <td>361,813,203.33</td>
+                      <td>234.45</td>
+                      <td class="pr-4 text-right">
+                        <div class="relative">
+                          <button
+                            class="p-1 text-gray-500 transition-colors duration-200 rounded-full hover:text-gray-700 hover:bg-gray-100"
+                            onclick="toggleDropdown(this)">
+                            <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                          </button>
+
+                          <div class="hidden bg-white border border-gray-200 rounded-lg shadow-lg w-36 dropdown-menu">
+                            <div class="py-1">
+                              <button onclick="window.location.href = 'editar-cliente.html'"
+                                class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">
+                                <i data-lucide="edit" class="w-4 h-4"></i>
+                                Editar
+                              </button>
+                              <button class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left btn-acao"
+                                data-tipo="apagar" data-msg="Tem certeza que quer remover este cliente?"
+                                data-title="Remover cliente">
+                                <i data-lucide="trash2" class="w-4 h-4"></i>
+                                Remover
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Investimento em subsidiárias e associadas</td>
+                      <td>00,00</td>
+                      <td>361,813,203.33</td>
+                      <td>234.45</td>
+                      <td class="pr-4 text-right">
+                        <div class="relative">
+                          <button
+                            class="p-1 text-gray-500 transition-colors duration-200 rounded-full hover:text-gray-700 hover:bg-gray-100"
+                            onclick="toggleDropdown(this)">
+                            <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                          </button>
+
+                          <div class="hidden bg-white border border-gray-200 rounded-lg shadow-lg w-36 dropdown-menu">
+                            <div class="py-1">
+                              <button onclick="window.location.href = 'editar-cliente.html'"
+                                class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">
+                                <i data-lucide="edit" class="w-4 h-4"></i>
+                                Editar
+                              </button>
+                              <button class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left btn-acao"
+                                data-tipo="apagar" data-msg="Tem certeza que quer remover este cliente?"
+                                data-title="Remover cliente">
+                                <i data-lucide="trash2" class="w-4 h-4"></i>
+                                Remover
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Outros activos financeiros</td>
+                      <td>00,00</td>
+                      <td>361,813,203.33</td>
+                      <td>234.45</td>
+                      <td class="pr-4 text-right">
+                        <div class="relative">
+                          <button
+                            class="p-1 text-gray-500 transition-colors duration-200 rounded-full hover:text-gray-700 hover:bg-gray-100"
+                            onclick="toggleDropdown(this)">
+                            <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                          </button>
+
+                          <div class="hidden bg-white border border-gray-200 rounded-lg shadow-lg w-36 dropdown-menu">
+                            <div class="py-1">
+                              <button onclick="window.location.href = 'editar-cliente.html'"
+                                class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">
+                                <i data-lucide="edit" class="w-4 h-4"></i>
+                                Editar
+                              </button>
+                              <button class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left btn-acao"
+                                data-tipo="apagar" data-msg="Tem certeza que quer remover este cliente?"
+                                data-title="Remover cliente">
+                                <i data-lucide="trash2" class="w-4 h-4"></i>
+                                Remover
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Outros activos não correntes</td>
+                      <td>00,00</td>
+                      <td>361,813,203.33</td>
+                      <td>234.45</td>
+                      <td class="pr-4 text-right">
+                        <div class="relative">
+                          <button
+                            class="p-1 text-gray-500 transition-colors duration-200 rounded-full hover:text-gray-700 hover:bg-gray-100"
+                            onclick="toggleDropdown(this)">
+                            <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                          </button>
+
+                          <div class="hidden bg-white border border-gray-200 rounded-lg shadow-lg w-36 dropdown-menu">
+                            <div class="py-1">
+                              <button onclick="window.location.href = 'editar-cliente.html'"
+                                class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">
+                                <i data-lucide="edit" class="w-4 h-4"></i>
+                                Editar
+                              </button>
+                              <button class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left btn-acao"
+                                data-tipo="apagar" data-msg="Tem certeza que quer remover este cliente?"
+                                data-title="Remover cliente">
+                                <i data-lucide="trash2" class="w-4 h-4"></i>
+                                Remover
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th class="positionl">TOTAL DO ACTIVO NÃO CORRENTE</th>
+                      <td>00,00</td>
+                      <td>361,813,203.33</td>
+                      <td>234.45</td>
+                      <td class="pr-4 text-right">
+                        <div class="relative">
+                          <button
+                            class="p-1 text-gray-500 transition-colors duration-200 rounded-full hover:text-gray-700 hover:bg-gray-100"
+                            onclick="toggleDropdown(this)">
+                            <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                          </button>
+
+                          <div class="hidden bg-white border border-gray-200 rounded-lg shadow-lg w-36 dropdown-menu">
+                            <div class="py-1">
+                              <button onclick="window.location.href = 'editar-cliente.html'"
+                                class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">
+                                <i data-lucide="edit" class="w-4 h-4"></i>
+                                Editar
+                              </button>
+                              <button class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left btn-acao"
+                                data-tipo="apagar" data-msg="Tem certeza que quer remover este cliente?"
+                                data-title="Remover cliente">
+                                <i data-lucide="trash2" class="w-4 h-4"></i>
+                                Remover
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
         </div>
       </main>
     </div>
