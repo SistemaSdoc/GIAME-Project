@@ -515,28 +515,81 @@ function AdicionarLinha() {
   btnRemover.addEventListener("click", function () {
     if (tbody.children.length > 1) {
       novaLinha.remove();
+      AtualizarTotais(); // atualiza ao remover
     } else {
       alert("Tem que deixar pelo menos uma linha!");
     }
   });
 
+  AdicionarEventosDeInputNaLinha(novaLinha);
+
   tbody.appendChild(novaLinha);
 }
 
-// Também já ativa o botão de remover da primeira linha
+
+// ==========================
+// ADICIONAR EVENTOS DE INPUT NA LINHA
+// ==========================
 document.addEventListener("DOMContentLoaded", () => {
+  const linhaOriginal = document.querySelector("tbody tr");
+  AdicionarEventosDeInputNaLinha(linhaOriginal);
+
   const btnRemover = document.querySelector("#btn-remover-linha");
   if (btnRemover) {
     btnRemover.addEventListener("click", function () {
       const tbody = document.querySelector("tbody");
       if (tbody.children.length > 1) {
         this.closest("tr").remove();
+        AtualizarTotais(); // não esquece disso aqui também no remover da linha inicial
       } else {
         alert("Tem que deixar pelo menos uma linha, cria!");
       }
     });
   }
 });
+
+
+// ==========================
+// ATUALIZAR TOTAIS
+// ==========================
+function AtualizarTotais() {
+  let totalDebito = 0;
+  let totalCredito = 0;
+
+  const debitos = document.querySelectorAll('input[name="valor_debito"]');
+  const creditos = document.querySelectorAll('input[name="valor_credito"]');
+
+  debitos.forEach((input, index) => {
+    const valor = parseFloat(input.value) || 0;
+    totalDebito += valor;
+  });
+
+  creditos.forEach((input, index) => {
+    const valor = parseFloat(input.value) || 0;
+    totalCredito += valor;
+  });
+
+  // Atualiza os campos de total
+  const inputTotalDebito = document.querySelector('input#total_debito');
+  const inputTotalCredito = document.querySelector('input#total_credito');
+
+  if (inputTotalDebito && inputTotalCredito) {
+    inputTotalDebito.value = totalDebito.toFixed(2);
+    inputTotalCredito.value = totalCredito.toFixed(2);
+  } else {
+    console.error("Inputs de total não encontrados no DOM");
+  }
+}
+
+
+// ==========================
+// ADICIONAR EVENTOS DE INPUT NA LINHA
+// ==========================
+function AdicionarEventosDeInputNaLinha(linha) {
+  linha.querySelectorAll('input[name="valor_debito"], input[name="valor_credito"]').forEach(input => {
+    input.addEventListener('input', AtualizarTotais);
+  });
+}
 
 
 // ==========================
@@ -614,22 +667,24 @@ document.addEventListener("click", function (e) {
 // ==========================
 // CONFIRMAR APÓS SUBMIT DE CADASTRO
 // ==========================
-document.querySelector("#form-submit").addEventListener("submit", function (e) {
-  e.preventDefault();
+const form = document.querySelector("#form-submit");
 
-  const form = this;
+if (form) {
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const form = this;
 
-  if (!form.checkValidity()) {
-    form.reportValidity();
-    return;
-  }
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
 
-  const titulo = form.dataset.title || "Sucesso!";
-  const mensagem = form.dataset.msg || "Tudo certo!";
-  const destino = form.dataset.redirect || "index.html";
+    const titulo = form.dataset.title || "Sucesso!";
+    const mensagem = form.dataset.msg || "Tudo certo!";
+    const destino = form.dataset.redirect || "index.html";
 
-  Swal.fire({
-    html: `
+    Swal.fire({
+      html: `
       <div class="flex flex-col items-center text-center">
         <i data-lucide="circle-check" class="w-14 h-14 mb-3 text-green-500"></i>
         <h2 class="text-xl font-semibold text-gray-900 mb-2">${titulo}</h2>
@@ -637,20 +692,21 @@ document.querySelector("#form-submit").addEventListener("submit", function (e) {
       </div>
     `,
 
-    showConfirmButton: true,
-    confirmButtonText: "Fechar",
-    customClass: {
-      popup: "rounded-xl p-6 shadow-xl bg-white",
-      confirmButton: "bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium",
-    },
-    buttonsStyling: false,
-    didOpen: () => lucide.createIcons(),
-  }).then((result) => {
-    if (result.isConfirmed) {
-      window.location.href = destino;
-    }
+      showConfirmButton: true,
+      confirmButtonText: "Fechar",
+      customClass: {
+        popup: "rounded-xl p-6 shadow-xl bg-white",
+        confirmButton: "bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium",
+      },
+      buttonsStyling: false,
+      didOpen: () => lucide.createIcons(),
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = destino;
+      }
+    });
   });
-});
+}
 
 // ==========================
 // CONFIRMAR APÓS SUBMIT DE EDITAR
@@ -673,4 +729,29 @@ window.addEventListener('DOMContentLoaded', function () {
 
   atualizarExibicaoSocios(); // já verifica o estado no início
   tipoSelect.addEventListener('change', atualizarExibicaoSocios);
+});
+
+// ===========================
+// Alternar exibição da seção de análise (com base no ano de análise)
+// ===========================
+const selectAno = document.getElementById('anoAnalise');
+const secaoAccoes = document.getElementById('accoes');
+
+selectAno.addEventListener('change', () => {
+  if (selectAno.value) {
+    secaoAccoes.classList.remove('hidden');
+  } else {
+    secaoAccoes.classList.add('hidden');
+  }
+});
+
+// ===========================
+// Alternar exibição da seção de análise (com base no ano de análise)
+// ===========================
+const valorDebito = document.getElementById('valor_debito');
+
+valorDebito.addEventListener('input', () => {
+  const valor = parseFloat(valorDebito.value);
+  const valorFormatado = valor.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' });
+  valorDebito.value = valorFormatado;
 });

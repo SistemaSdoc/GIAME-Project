@@ -111,7 +111,7 @@
         </button>
       </header>
 
-      <main class="flex-1 p-6 overflow-y-auto">
+      <main class="flex-1 overflow-y-auto md:p-6">
         <div class="page-content">
           <!-- Capa -->
           <section class="flex items-center gap-6 p-6 bg-white border rounded-lg">
@@ -160,18 +160,27 @@
                 <p class="font-medium">2022-03-15</p>
               </div>
 
-              <div class="md:col-span-2">
+              <div>
                 <p class="text-gray-500">Objecto Social</p>
                 <p class="font-medium">Prestação de Serviços</p>
+              </div>
+
+              <div class="md:col-span-2">
+                <p class="mb-1 text-gray-500">Ano de Análise</p>
+                <select name="ano_analise" id="anoAnalise" class="input md:!w-auto w-full">
+                  <option value="" disabled selected>Selecione o ano de análise</option>
+                  <option value="2025">2025</option>
+                  <option value="2024">2024</option>
+                </select>
               </div>
             </div>
           </section>
 
           <!-- Ações -->
-          <section>
+          <section id="accoes" class="hidden mt-8">
             <h3 class="mb-4 text-lg font-semibold text-gray-700">Ações</h3>
 
-            <div class="grid grid-cols-4 gap-4 md:grid-cols-4">
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               <!-- Ver Lançamentos -->
               <a href="../lancamentos/ver-lancamentos.html"
                 class="flex flex-col items-center justify-center gap-2 p-4 transition bg-white border border-gray-200 shadow-sm rounded-xl hover:bg-gray-50 group">
@@ -199,7 +208,7 @@
                 <p class="text-sm text-gray-700">Diário</p>
               </a>
 
-              <!-- balancete resumo-->
+              <!-- Balancete Resumo -->
               <a href="../lancamentos/balancete-resumo.html"
                 class="flex flex-col items-center justify-center gap-2 p-4 transition bg-white border border-gray-200 shadow-sm rounded-xl hover:bg-gray-50 group">
                 <div class="p-2 transition-all rounded-lg bg-primary/10 text-primary group-hover:text-highlight">
@@ -208,7 +217,7 @@
                 <p class="text-sm text-gray-700">Balancete Resumo</p>
               </a>
 
-              <!-- balancete -->
+              <!-- Balancete -->
               <a href="../lancamentos/balancete.html"
                 class="flex flex-col items-center justify-center gap-2 p-4 transition bg-white border border-gray-200 shadow-sm rounded-xl hover:bg-gray-50 group">
                 <div class="p-2 transition-all rounded-lg bg-primary/10 text-primary group-hover:text-highlight">
@@ -235,7 +244,7 @@
                 <p class="text-sm text-gray-700">PGC</p>
               </a>
 
-              <!-- balancete -->
+              <!-- Inserir Conta -->
               <a href="../lancamentos/PGC/criar-conta.html"
                 class="flex flex-col items-center justify-center gap-2 p-4 transition bg-white border border-gray-200 shadow-sm rounded-xl hover:bg-gray-50 group">
                 <div class="p-2 transition-all rounded-lg bg-primary/10 text-primary group-hover:text-highlight">
@@ -243,8 +252,6 @@
                 </div>
                 <p class="text-sm text-gray-700">Inserir Conta</p>
               </a>
-
-
             </div>
           </section>
 

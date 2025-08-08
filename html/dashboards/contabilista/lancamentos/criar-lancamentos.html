@@ -149,25 +149,18 @@
 
               <div>
                 <label for="ano_analise" class="label">Ano de Análise</label>
-                <!--input type="text" name="ano_analise" id="ano_analise" class="input" placeholder="2025" required  value="2025" /-->
-                <select name="ano_analise" id="ano_analise" class="input" placeholder="2025" required  value="2025" required>
-                  <option disabled selected>Selcione o ano</option>
-                  <option value="2025">2025</option>
-                  <option value="2024">2024</option>
-                  <option value="2023">2023</option>
-                  <option value="2022">2022</option>
-                  <option value="2021">2021</option>
-                </select>
+                <input type="text" name="ano_analise" id="ano_analise" class="cursor-not-allowed input"
+                  placeholder="2025" required readonly value="2025" />
               </div>
 
               <div>
-                <label for="total_debito" class="label">Total Débito</label>
+                <label for="total_debito" id="total_debito" class="label">Total Débito</label>
                 <input type="text" name="total_debito" id="total_debito" class="bg-gray-100 cursor-not-allowed input"
                   readonly value="0.00" required />
               </div>
 
               <div>
-                <label for="total_credito" class="label">Total Crédito</label>
+                <label for="total_credito" id="total_credito" class="label">Total Crédito</label>
                 <input type="text" name="total_credito" id="total_credito" class="bg-gray-100 cursor-not-allowed input"
                   readonly value="0.00" required />
               </div>
@@ -198,8 +191,6 @@
                     <th>Data do Movimento</th>
                     <th>Conta principal</th>
                     <th>Conta Lançamento</th>
-                    <!--th>Conta Crédito</th>
-                    <th>Subconta</th-->
                     <th>Valor Débito</th>
                     <th>Valor Crédito</th>
                     <th class="text-right ">Ações</th>
@@ -240,37 +231,14 @@
                       </select>
                     </td>
 
-                    <!--td>
-                      <select name="conta_credito" id="conta_credito" class="font-normal input" required>
-                        <option disabled selected>Selcione a conta</option>
-                        <option value="11">32 - Fornecedores</option>
-                        <option value="32">33 - Empréstimos</option>
-                        <option value="201">34 - Conta Exemplo</option>
-                        <option value="301">35 - Conta Exemplo</option>
-                        <option value="401">36 - Conta Exemplo</option>
-                      </select>
+                    <td>
+                      <input type="number" name="valor_debito" class="font-normal input placeholder:font-normal"
+                        placeholder="Valor débito" required>
                     </td>
 
                     <td>
-                      <select name="subconta_lancamento_cred" id="subconta_lancamento_cred" class="font-normal input"
-                        required>
-                        <option disabled selected>Selcione a subconta</option>
-                        <option value="11">32.1 - Subconta A</option>
-                        <option value="32">32.2 - Subconta B</option>
-                        <option value="201">32.3 - Subconta C</option>
-                        <option value="301">32.4 - Subconta D</option>
-                        <option value="401">32.5 - Subconta E</option>
-                      </select>
-                    </td-->
-
-                    <td>
-                      <input type="number" name="valor_debito" id="valor_debito"
-                        class="font-normal input placeholder:font-normal" placeholder="Valor débito" required>
-                    </td>
-
-                    <td>
-                      <input type="number" name="valor_credito" id="valor_credito"
-                        class="font-normal input placeholder:font-normal" placeholder="Valor crédito" required>
+                      <input type="number" name="valor_credito" class="font-normal input placeholder:font-normal"
+                        placeholder="Valor crédito" required>
                     </td>
 
                     <td class="pr-4 text-right">
