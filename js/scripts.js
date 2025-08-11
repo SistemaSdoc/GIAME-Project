@@ -6,6 +6,28 @@ lucide.createIcons();
 gsap.registerPlugin(ScrollTrigger);
 
 
+// =======================================
+// Número automático do Lançamento
+
+document.addEventListener('DOMContentLoaded', function () {
+        // Gerar número aleatório de 4 dígitos (entre 1000 e 9999)
+        const numeroAleatorio = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
+
+        // Obter data atual
+        const hoje = new Date();
+        const dia = String(hoje.getDate()).padStart(2, '0');      // 01-31
+        const mes = String(hoje.getMonth() + 1).padStart(2, '0'); // 01-12 (getMonth() é zero-based)
+        const ano = hoje.getFullYear();                           // 2025
+
+        const dataAtual = `${dia}${mes}${ano}`; // Ex: 05042025
+
+        // Combinar número aleatório + data
+        const numeroFinal = `${numeroAleatorio}${dataAtual}`; // Ex: 732505042025
+
+        // Exibir no input
+        document.getElementById('numero_lancamento').value = numeroFinal;
+    });
+
 // ==========================
 // MENU MOBILE (NAVBAR TOGGLE)
 // ==========================
