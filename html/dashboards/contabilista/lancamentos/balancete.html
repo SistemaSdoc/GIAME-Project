@@ -116,12 +116,109 @@
       </header>
 
       <!-- Conteúdo -->
-      <main class="flex-1 overflow-auto">
-        <div class=" page-content">
-          <h1
-            class="text-3xl font-semibold text-center text-transparent bg-gradient-to-r from-primary to-secondary bg-clip-text">
+      <div class="flex flex-col gap-2">
+        <!-- Tabs -->
+        <div class="flex gap-2 mt-2">
+          <button onclick="showTab('tab1')" id="tab-tab1"
+            class="px-4 py-2 text-sm font-medium text-white transition-all duration-200 border border-gray-200 rounded-lg tab-button bg-primary">
+            Balancete Resumo
+          </button>
+
+          <button onclick="showTab('tab2')" id="tab-tab2"
+            class="px-4 py-2 text-sm font-medium text-gray-700 transition-all duration-200 border border-gray-200 rounded-lg tab-button hover:bg-gray-100">
             Balancete Detalhado
-          </h1>
+          </button>
+
+        </div>
+
+      </div>
+
+      <main class="flex-1 overflow-auto">
+        <div id="content-tab1" class=" page-content">
+
+          <div class="overflow-hidden bg-white border rounded-lg shadow-sm">
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm text-left text-gray-700 ">
+                <thead class="">
+                  <tr>
+                    <th rowspan="2">Conta</th>
+                    <th rowspan="2">Descrição</th>
+                    <th colspan="2">Saldo Inicial</th>
+                    <th colspan="2">Movimentos</th>
+                    <th colspan="2">Saldos Final</th>
+                  </tr>
+                  <tr>
+                    <th>Valor</th>
+                    <th>D/C</th>
+                    <th>Débito</th>
+                    <th>Crédito</th>
+                    <th>Devedor</th>
+                    <th>Credor</th>
+                  </tr>
+                </thead>
+
+                <tbody class="divide-y divide-gray-200">
+                  <tr>
+                    <td>11</td>
+                    <td>Imobilizações Corpóreas</td>
+                    <td>361,813,203.33</td>
+                    <td>D</td>
+                    <td>334,917.72</td>
+                    <td>00,00</td>
+                    <td>362,148,121.05</td>
+                    <td>00,00</td>
+                  </tr>
+
+                  <tr>
+                    <td>11</td>
+                    <td>Imobilizações Corpóreas</td>
+                    <td>361,813,203.33</td>
+                    <td>D</td>
+                    <td>334,917.72</td>
+                    <td>00,00</td>
+                    <td>362,148,121.05</td>
+                    <td>00,00</td>
+                  </tr>
+
+                  <tr>
+                    <td>11</td>
+                    <td>Imobilizações Corpóreas</td>
+                    <td>361,813,203.33</td>
+                    <td>D</td>
+                    <td>334,917.72</td>
+                    <td>00,00</td>
+                    <td>362,148,121.05</td>
+                    <td>00,00</td>
+                  </tr>
+
+                  <tr>
+                    <td>11</td>
+                    <td>Imobilizações Corpóreas</td>
+                    <td>361,813,203.33</td>
+                    <td>D</td>
+                    <td>334,917.72</td>
+                    <td>00,00</td>
+                    <td>362,148,121.05</td>
+                    <td>00,00</td>
+                  </tr>
+
+                  <tr>
+                    <td>11</td>
+                    <td>Imobilizações Corpóreas</td>
+                    <td>361,813,203.33</td>
+                    <td>D</td>
+                    <td>334,917.72</td>
+                    <td>00,00</td>
+                    <td>362,148,121.05</td>
+                    <td>00,00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div id="content-tab2" class=" page-content">
 
           <div class="overflow-hidden bg-white border rounded-lg shadow-sm">
             <div class="overflow-x-auto">
