@@ -5,29 +5,6 @@
 lucide.createIcons();
 gsap.registerPlugin(ScrollTrigger);
 
-
-// =======================================
-// Número automático do Lançamento
-
-document.addEventListener('DOMContentLoaded', function () {
-        // Gerar número aleatório de 4 dígitos (entre 1000 e 9999)
-        const numeroAleatorio = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
-
-        // Obter data atual
-        const hoje = new Date();
-        const dia = String(hoje.getDate()).padStart(2, '0');      // 01-31
-        const mes = String(hoje.getMonth() + 1).padStart(2, '0'); // 01-12 (getMonth() é zero-based)
-        const ano = hoje.getFullYear();                           // 2025
-
-        const dataAtual = `${dia}${mes}${ano}`; // Ex: 05042025
-
-        // Combinar número aleatório + data
-        const numeroFinal = `${numeroAleatorio}${dataAtual}`; // Ex: 732505042025
-
-        // Exibir no input
-        document.getElementById('numero_lancamento').value = numeroFinal;
-    });
-
 // ==========================
 // MENU MOBILE (NAVBAR TOGGLE)
 // ==========================
@@ -360,6 +337,30 @@ window.addEventListener('resize', function () {
   });
 });
 
+
+// =======================================
+// Número automático do Lançamento
+// =======================================
+document.addEventListener('DOMContentLoaded', function () {
+  // Gerar número aleatório de 4 dígitos (entre 1000 e 9999)
+  const numeroAleatorio = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
+
+  // Obter data atual
+  const hoje = new Date();
+  const dia = String(hoje.getDate()).padStart(2, '0');      // 01-31
+  const mes = String(hoje.getMonth() + 1).padStart(2, '0'); // 01-12 (getMonth() é zero-based)
+  const ano = hoje.getFullYear();                           // 2025
+
+  const dataAtual = `${dia}${mes}${ano}`; // Ex: 05042025
+
+  // Combinar número aleatório + data
+  const numeroFinal = `${numeroAleatorio}${dataAtual}`; // Ex: 732505042025
+
+  // Exibir no input
+  document.getElementById('numero_lancamento').value = numeroFinal;
+});
+
+
 // ==========================
 // TOGGLE DE VISUALIZAÇÃO DE SENHA
 // ==========================
@@ -528,8 +529,11 @@ function AdicionarLinha() {
   const linhaOriginal = tbody.querySelector("tr");
   const novaLinha = linhaOriginal.cloneNode(true);
 
-  // Limpa os valores dos inputs da nova linha
-  novaLinha.querySelectorAll("input").forEach(input => input.value = "");
+  // Limpa valores e habilita inputs
+  novaLinha.querySelectorAll("input").forEach(input => {
+    input.value = "";
+    input.disabled = false; // reabilita campos para evitar herança de bloqueio
+  });
   novaLinha.querySelectorAll("select").forEach(select => select.selectedIndex = 0);
 
   // Adiciona evento ao botão de remover na nova linha
@@ -572,7 +576,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // ==========================
-// ATUALIZAR TOTAIS
+// ATUALIZAR TOTAIS + DIFERENÇA
 // ==========================
 function AtualizarTotais() {
   let totalDebito = 0;
@@ -581,25 +585,36 @@ function AtualizarTotais() {
   const debitos = document.querySelectorAll('input[name="valor_debito"]');
   const creditos = document.querySelectorAll('input[name="valor_credito"]');
 
-  debitos.forEach((input, index) => {
-    const valor = parseFloat(input.value) || 0;
-    totalDebito += valor;
-  });
+  debitos.forEach(input => totalDebito += parseFloat(input.value) || 0);
+  creditos.forEach(input => totalCredito += parseFloat(input.value) || 0);
 
-  creditos.forEach((input, index) => {
-    const valor = parseFloat(input.value) || 0;
-    totalCredito += valor;
-  });
-
-  // Atualiza os campos de total
-  const inputTotalDebito = document.querySelector('input#total_debito');
-  const inputTotalCredito = document.querySelector('input#total_credito');
+  const inputTotalDebito = document.querySelector('#total_debito');
+  const inputTotalCredito = document.querySelector('#total_credito');
+  const inputDiferenca = document.querySelector('#diferenca');
+  const btnRegistrar = document.querySelector('#btn-registrar');
 
   if (inputTotalDebito && inputTotalCredito) {
     inputTotalDebito.value = totalDebito.toFixed(2);
     inputTotalCredito.value = totalCredito.toFixed(2);
-  } else {
-    console.error("Inputs de total não encontrados no DOM");
+  }
+
+  // Calcular diferença
+  const diferenca = totalDebito - totalCredito;
+  if (inputDiferenca) {
+    inputDiferenca.value = diferenca.toFixed(2);
+  }
+
+  // Habilitar/desabilitar botão
+  if (btnRegistrar) {
+    if (diferenca !== 0) {
+      btnRegistrar.disabled = true;
+      btnRegistrar.classList.add("opacity-50", "cursor-not-allowed");
+      btnRegistrar.classList.remove("hover:bg-opacity-90");
+    } else {
+      btnRegistrar.disabled = false;
+      btnRegistrar.classList.remove("opacity-50", "cursor-not-allowed");
+      btnRegistrar.classList.add("hover:bg-opacity-90");
+    }
   }
 }
 
@@ -608,10 +623,32 @@ function AtualizarTotais() {
 // ADICIONAR EVENTOS DE INPUT NA LINHA
 // ==========================
 function AdicionarEventosDeInputNaLinha(linha) {
-  linha.querySelectorAll('input[name="valor_debito"], input[name="valor_credito"]').forEach(input => {
-    input.addEventListener('input', AtualizarTotais);
+  const debitoInput = linha.querySelector('input[name="valor_debito"]');
+  const creditoInput = linha.querySelector('input[name="valor_credito"]');
+
+  // Evento para débito
+  debitoInput.addEventListener('input', () => {
+    if (debitoInput.value) {
+      creditoInput.value = "";
+      creditoInput.disabled = true;
+    } else {
+      creditoInput.disabled = false;
+    }
+    AtualizarTotais();
+  });
+
+  // Evento para crédito
+  creditoInput.addEventListener('input', () => {
+    if (creditoInput.value) {
+      debitoInput.value = "";
+      debitoInput.disabled = true;
+    } else {
+      debitoInput.disabled = false;
+    }
+    AtualizarTotais();
   });
 }
+
 
 
 // ==========================
@@ -759,13 +796,15 @@ window.addEventListener('DOMContentLoaded', function () {
 const selectAno = document.getElementById('anoAnalise');
 const secaoAccoes = document.getElementById('accoes');
 
-selectAno.addEventListener('change', () => {
-  if (selectAno.value) {
-    secaoAccoes.classList.remove('hidden');
-  } else {
-    secaoAccoes.classList.add('hidden');
-  }
-});
+if (selectAno && secaoAccoes) {
+  selectAno.addEventListener('change', () => {
+    if (selectAno.value) {
+      secaoAccoes.classList.remove('hidden');
+    } else {
+      secaoAccoes.classList.add('hidden');
+    }
+  });
+}
 
 // ===========================
 // Alternar exibição da seção de análise (com base no ano de análise)

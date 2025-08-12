@@ -127,12 +127,12 @@
                 Todos
               </button>
 
-              <button onclick="showTab('tab2')" id="tab-tab2"
+              <!-- <button onclick="showTab('tab2')" id="tab-tab2"
                 class="px-4 py-2 text-sm font-medium text-gray-700 transition-all duration-200 border border-gray-200 rounded-lg tab-button hover:bg-gray-100">
                 Singulares
-              </button>
+              </button> -->
 
-              <button onclick="showTab('tab3')" id="tab-tab3"
+              <button onclick="showTab('tab2')" id="tab-tab2"
                 class="px-4 py-2 text-sm font-medium text-gray-700 transition-all duration-200 border border-gray-200 rounded-lg tab-button hover:bg-gray-100">
                 Empresas
               </button>
@@ -184,9 +184,9 @@
                       <td>Luanda, Angola</td>
                       <td>+244 999 999 999</td>
                       <td>joao@email.com</td>
-                      <td class="px-3 text-sm text-gray-500">Singular</td>
-                      <td>-</td>
-                      <td>-</td>
+                      <td class="px-3 text-gray-500">Empresa</td>
+                      <td>Média</td>
+                      <td>Agricultura</td>
                       <td class="pr-4 text-right">
                         <div class="relative">
                           <button
@@ -197,7 +197,7 @@
 
                           <div class="hidden bg-white border border-gray-200 rounded-lg shadow-lg w-36 dropdown-menu">
                             <div class="py-1">
-                              <button onclick="window.location.href = 'visualizar-cliente-singular.html'"
+                              <button onclick="window.location.href = 'visualizar-cliente-empresa.html'"
                                 class="flex items-center w-full gap-1 px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">
                                 <i data-lucide="eye" class="w-4 h-4"></i>
                                 ver
@@ -209,7 +209,7 @@
                               </button>
                               <button class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left btn-acao"
                                 data-tipo="apagar" data-msg="Tem certeza que quer remover este cliente?"
-                                data-title="Remover cliente">
+                                data-title="Remover Cliente">
                                 <i data-lucide="trash2" class="w-4 h-4"></i>
                                 Remover
                               </button>
@@ -225,9 +225,9 @@
                       <td>Benguela, Angola</td>
                       <td>+244 998 888 777</td>
                       <td>maria@email.com</td>
-                      <td class="px-3 text-sm text-gray-500">Empresa</td>
-                      <td>Média</td>
-                      <td>Agricultura</td>
+                      <td class="px-3 text-gray-500">Empresa</td>
+                      <td>Pequena</td>
+                      <td>Industrial</td>
                       <td class="pr-4 text-right">
                         <div class="relative">
                           <button
@@ -240,6 +240,7 @@
                             <div class="py-1">
                               <button onclick="window.location.href = 'visualizar-cliente-empresa.html'"
                                 class="flex items-center w-full gap-1 px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">
+
                                 <i data-lucide="eye" class="w-4 h-4"></i>
                                 ver
                               </button>
@@ -266,9 +267,9 @@
                       <td>Huambo, Angola</td>
                       <td>+244 922 111 222</td>
                       <td>carlos@empresa.com</td>
-                      <td class="px-3 text-sm text-gray-500">Singular</td>
-                      <td>-</td>
-                      <td>-</td>
+                      <td class="px-3 text-gray-500">Empresa</td>
+                      <td>Grande</td>
+                      <td>TI</td>
                       <td class="pr-4 text-right">
                         <div class="relative">
                           <button
@@ -279,10 +280,10 @@
 
                           <div class="hidden bg-white border border-gray-200 rounded-lg shadow-lg w-36 dropdown-menu">
                             <div class="py-1">
-                              <button onclick="window.location.href = 'visualizar-cliente-singular.html'"
+                              <button onclick="window.location.href = 'visualizar-cliente-empresa.html'"
                                 class="flex items-center w-full gap-1 px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">
                                 <i data-lucide="eye" class="w-4 h-4"></i>
-                                ver
+                                Ver
                               </button>
                               <button onclick="window.location.href = 'editar-cliente.html'"
                                 class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-50">
@@ -291,7 +292,7 @@
                               </button>
                               <button class="flex items-center w-full gap-2 px-4 py-2 text-sm text-left btn-acao"
                                 data-tipo="apagar" data-msg="Tem certeza que quer remover este cliente?"
-                                data-title="Remover cliente">
+                                data-title="Remover Cliente">
                                 <i data-lucide="trash2" class="w-4 h-4"></i>
                                 Remover
                               </button>
@@ -306,7 +307,7 @@
             </div>
           </div>
 
-          <div id="content-tab2" class="hidden tab-content">
+<!--           <div id="content-tab2" class="hidden tab-content">
             <div class="overflow-hidden bg-white border rounded-lg shadow-sm">
               <div class="overflow-x-auto">
                 <table class="w-full text-sm text-left text-gray-700 ">
@@ -443,9 +444,9 @@
                 </table>
               </div>
             </div>
-          </div>
+          </div> -->
 
-          <div id="content-tab3" class="hidden tab-content">
+          <div id="content-tab2" class="hidden tab-content">
             <div class="overflow-hidden bg-white border rounded-lg shadow-sm">
               <div class="overflow-x-auto">
                 <table class="w-full text-sm text-left text-gray-700 ">

@@ -133,7 +133,7 @@
               <div>
                 <label for="numero_lancamento" class="label">Nº Lançamento</label>
                 <input type="text" name="numero_lancamento" id="numero_lancamento" class="input"
-                  placeholder="Ex: 000123"  />
+                  placeholder="Ex: 000123" readonly/>
               </div>
 
               <div>
@@ -154,15 +154,21 @@
               </div>
 
               <div>
-                <label for="total_debito" id="total_debito" class="label">Total Débito</label>
+                <label for="total_debito" class="label">Total Débito</label>
                 <input type="text" name="total_debito" id="total_debito" class="bg-gray-100 cursor-not-allowed input"
-                  readonly value="000.000,00" required />
+                  readonly value="0.00" required />
               </div>
 
               <div>
-                <label for="total_credito" id="total_credito" class="label">Total Crédito</label>
+                <label for="total_credito" class="label">Total Crédito</label>
                 <input type="text" name="total_credito" id="total_credito" class="bg-gray-100 cursor-not-allowed input"
-                  readonly value="000.000,00" required />
+                  readonly value="0.00" required />
+              </div>
+
+              <div>
+                <label for="diferenca" class="label">Diferença</label>
+                <input type="text" id="diferenca" class="bg-gray-100 cursor-not-allowed input" readonly disabled
+                  value="0.00" />
               </div>
             </div>
           </div>
@@ -260,15 +266,15 @@
               Voltar
             </a>
 
-            <button type="submit"
-              class="order-1 w-full px-4 py-2 text-sm text-white rounded-lg md:w-auto bg-primary hover:bg-opacity-90 ">
+            <button type="submit" id="btn-registrar"
+              class="order-1 w-full px-4 py-2 text-sm text-white rounded-lg md:w-auto bg-primary hover:bg-opacity-90 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-primary">
               Registar
             </button>
           </div>
 
         </form>
 
-    </main>
+      </main>
     </div>
 
   </div>
