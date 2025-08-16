@@ -148,12 +148,6 @@
               </div>
 
               <div>
-                <label for="ano_analise" class="label">Ano de Análise</label>
-                <input type="text" name="ano_analise" id="ano_analise" class="cursor-not-allowed input"
-                  placeholder="2025" required readonly value="2025" />
-              </div>
-
-              <div>
                 <label for="total_debito" class="label">Total Débito</label>
                 <input type="text" name="total_debito" id="total_debito" class="bg-gray-100 cursor-not-allowed input"
                   readonly value="0.00" required />
@@ -169,6 +163,22 @@
                 <label for="diferenca" class="label">Diferença</label>
                 <input type="text" id="diferenca" class="bg-gray-100 cursor-not-allowed input" readonly disabled
                   value="0.00" />
+              </div>
+
+              <div>
+                <label for="ano_analise" class="label">Ano de Análise</label>
+                <input type="text" name="ano_analise" id="ano_analise" class="cursor-not-allowed input"
+                  placeholder="2025" required readonly value="2025" />
+              </div>
+
+              <div>
+                <label for="data_movimento" class="label">Data do Movimento</label>
+                <input type="date" name="data_movimento" id="data_movimento" class="font-normal input" required>
+              </div>
+
+              <div>
+                <label for="descricao_movimento" class="label">Descrição do Movimento</label>
+                <input type="text" name="descricao_movimento" id="descricao_movimento" class="font-normal input" required>
               </div>
             </div>
           </div>
@@ -193,8 +203,8 @@
               <table class="w-full text-sm text-left text-gray-700 ">
                 <thead class="">
                   <tr>
-                    <th>Nº do Movimento</th>
-                    <th>Data do Movimento</th>
+                    <!-- th>Nº do Movimento</th -->
+                    <!-- th>Data do Movimento</th -->
                     <th>Conta principal</th>
                     <th>Conta Lançamento</th>
                     <th>Valor Débito</th>
@@ -205,14 +215,10 @@
 
                 <tbody class="divide-y divide-gray-200">
                   <tr>
-                    <td>
+                    <!--td>
                       <input type="number" name="numero_movimento" id="numero_movimento"
                         class="font-normal input placeholder:font-normal" placeholder="Nº do movimento" required>
-                    </td>
-
-                    <td>
-                      <input type="date" name="data_movimento" id="data_movimento" class="font-normal input" required>
-                    </td>
+                    </td-->
 
                     <td>
                       <select name="conta_debito" id="conta_debito" class="font-normal input" required>
